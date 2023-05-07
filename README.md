@@ -36,7 +36,7 @@ content
 
 ### Built With
 
-- [![React][react.js]][react-url]
+- ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 <!-- - [![Next][next.js]][next-url]
 - [![Vue][vue.js]][vue-url]
 - [![Angular][angular.io]][angular-url]
