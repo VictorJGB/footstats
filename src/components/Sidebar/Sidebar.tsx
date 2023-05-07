@@ -1,15 +1,8 @@
-import {
-  Avatar,
-  Drawer,
-  List,
-  ListItemButton,
-  ListItemIcon,
-  Stack,
-  Toolbar,
-} from "@mui/material";
+import { Avatar, Drawer, List, Stack, Toolbar } from "@mui/material";
 import assets from "../../assets";
 import Theme from "../../styles/Theme";
 import appRoutes from "../../routes/appRoutes";
+import SideBarItem from "./Item/Item";
 
 const Sidebar = () => {
   return (
@@ -43,18 +36,7 @@ const Sidebar = () => {
           </Stack>
         </Toolbar>
         {appRoutes.map((route, index) =>
-          route.sidebarProps ? (
-            <ListItemButton
-              sx={{
-                color: "white",
-              }}
-            >
-              <ListItemIcon sx={{ color: "white" }}>
-                {route.sidebarProps.icon && route.sidebarProps.icon}
-              </ListItemIcon>
-              {route.sidebarProps.displayText}
-            </ListItemButton>
-          ) : null
+          route.sidebarProps ? <SideBarItem item={route} /> : null
         )}
       </List>
     </Drawer>

@@ -1,10 +1,13 @@
+import { RouteType } from "./config";
+
 import HomePage from "../pages/home/Home";
 import PlayersPage from "../pages/players/Players";
 import TeamsPage from "../pages/teams/Teams";
-import { RouteType } from "./config";
+import MatchesPage from "../pages/matches/Matches";
 
 import GroupsIcon from "@mui/icons-material/Groups";
 import PersonIcon from "@mui/icons-material/Person";
+import DateRangeIcon from "@mui/icons-material/DateRange";
 
 const appRoutes: RouteType[] = [
   {
@@ -28,6 +31,15 @@ const appRoutes: RouteType[] = [
     sidebarProps: {
       displayText: "Players",
       icon: <PersonIcon />,
+    },
+  },
+  {
+    path: "/matches",
+    element: <MatchesPage />,
+    state: "matches",
+    sidebarProps: {
+      displayText: "Matches",
+      icon: <DateRangeIcon />,
     },
   },
 ];
