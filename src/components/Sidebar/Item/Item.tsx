@@ -13,7 +13,7 @@ const SideBarItem = ({ item }: Props) => {
       component={Link}
       to={item.path}
       sx={{
-        color: "white",
+        color: Theme.sidebar.textColor,
 
         "&: hover": {
           backgroundColor: Theme.sidebar.hoverBg,
@@ -21,7 +21,7 @@ const SideBarItem = ({ item }: Props) => {
         padding: "5% 10%",
       }}
     >
-      <ListItemIcon sx={{ color: "white" }}>
+      <ListItemIcon sx={{ color: Theme.sidebar.iconColor }}>
         {item.sidebarProps.icon && item.sidebarProps.icon}
       </ListItemIcon>
       {item.sidebarProps.displayText}

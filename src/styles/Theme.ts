@@ -1,17 +1,25 @@
-import { colors } from "@mui/material";
+import themeColors from "./ThemeColors";
 
 const Theme = {
   sidebar: {
-    bg: "#233044",
-    color: "#eeeeee",
-    hoverBg: "#1e293a",
+    bg: themeColors.bg,
+    textColor: themeColors.main.white,
+    iconColor: themeColors.main.primary,
+    hoverBg: themeColors.hoverBg,
     activeBg: "#1e253a",
   },
-  topbar: {
-    bg: "#fff",
-    color: "#000",
+  title: {
+    primary: themeColors.main.primary,
+    secondary: themeColors.main.secondary,
+    black: themeColors.main.black,
+    white: themeColors.main.white,
   },
-  mainBg: colors.grey["100"],
+  bold: {
+    color: themeColors.main.primary,
+  },
+  mainBg: themeColors.main.white,
+  secondaryBg: themeColors.bg,
+  tertiaryBg: themeColors.main.primary,
 };
 
 export default Theme;

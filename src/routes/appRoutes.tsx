@@ -20,7 +20,7 @@ const appRoutes: RouteType[] = [
     element: <TeamsPage />,
     state: "teams",
     sidebarProps: {
-      displayText: "Teams",
+      displayText: "Times",
       icon: <GroupsIcon />,
     },
   },
@@ -29,7 +29,7 @@ const appRoutes: RouteType[] = [
     element: <PlayersPage />,
     state: "players",
     sidebarProps: {
-      displayText: "Players",
+      displayText: "Jogadores",
       icon: <PersonIcon />,
     },
   },
@@ -38,7 +38,7 @@ const appRoutes: RouteType[] = [
     element: <MatchesPage />,
     state: "matches",
     sidebarProps: {
-      displayText: "Matches",
+      displayText: "Partidas",
       icon: <DateRangeIcon />,
     },
   },

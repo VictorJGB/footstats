@@ -8,6 +8,7 @@ export function getTeams<T = unknown>(url: string) {
     "4982a75d8a59feb1df3929d79e015fe3e6055b41029252b5706b5fcdc8f6bf00";
 
   //   base configurations for the request
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const config = {
     method: "get",
     url: url,

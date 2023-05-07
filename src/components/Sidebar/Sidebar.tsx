@@ -28,10 +28,15 @@ const Sidebar = () => {
               flexDirection: "row",
               justifyContent: "center",
               alignItems: "center",
-              color: Theme.sidebar.color,
+              color: Theme.sidebar.textColor,
             }}
           >
-            <Avatar src={assets.images.logo} />
+            <Avatar
+              src={assets.images.logo}
+              sx={{
+                width: "4vmin",
+              }}
+            />
             <h1>Footstats</h1>
           </Stack>
         </Toolbar>

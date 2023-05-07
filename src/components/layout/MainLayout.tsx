@@ -1,13 +1,11 @@
-import { Box, Toolbar } from "@mui/material";
+import { Box } from "@mui/material";
 import Sidebar from "../Sidebar/Sidebar";
 import Theme from "../../styles/Theme";
 import { Outlet } from "react-router";
-import Topbar from "../Topbar/Topbar";
 
 const MainLayout = () => {
   return (
     <Box sx={{ display: "flex" }}>
-      <Topbar />
       <Box
         component="nav"
         sx={{
@@ -30,7 +28,6 @@ const MainLayout = () => {
           backgroundColor: Theme.mainBg,
         }}
       >
-        <Toolbar />
         <Outlet />
       </Box>
     </Box>
