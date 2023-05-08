@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 
 const api = axios.create({
   baseURL: "https://apiv3.apifootball.com/",
-  timeout: 1000,
 });
 
 const apiKey =
@@ -12,6 +11,9 @@ const apiKey =
 export function getTeams<T = unknown>() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [data, setData] = useState<T | null>(null);
+
+  //   base configurations for the request
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const config: AxiosRequestConfig = {
     params: {
       action: "get_teams",
@@ -19,8 +21,6 @@ export function getTeams<T = unknown>() {
       league_id: 300, //Spain league
     },
   };
-
-  //   base configurations for the request
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
