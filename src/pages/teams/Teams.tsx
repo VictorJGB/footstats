@@ -1,27 +1,111 @@
 import Title from "../../components/Title/Title";
-import { getTeams } from "../../services/api";
+import { getStandings } from "../../services/api";
 import { Container } from "./Teams.styles";
 import Card from "../../components/Card/Card";
+import {
+  Box,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from "@mui/material";
+import Theme from "../../styles/Theme";
+
+import { IStandings } from "../../interface/IStandings";
+import { ICoach } from "../../interface/ICoach";
 import Subtitle from "../../components/Subtitle/Subtitle";
-import { ITeam } from "../../interface/ITeam";
 
 const TeamsPage = () => {
-  const { data: teams } = getTeams<ITeam[]>();
+  const { data: teams } = getStandings<IStandings[]>();
+
+  const headerCellStyle = {
+    color: Theme.title.white,
+    fontSize: "1.3em",
+    fontWeight: 700,
+  };
+
+  const bodyCellStyle = {
+    color: Theme.title.black,
+    fontSize: "1.1em",
+    fontWeight: 500,
+  };
 
   return (
     <Container>
-      <Title>Times</Title>
-      <Card width="95vmin">
-        <Subtitle fontSize="4vmin">Escolha seu time</Subtitle>
-        <button
-          onClick={() => {
-            teams?.map((team) => {
-              console.log(team.team_name);
-            });
-          }}
-        >
-          Get Teams
-        </button>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-start",
+          alignItems: "flex-start",
+          width: "100%",
+          gap: "0.5em",
+        }}
+      >
+        <Title color={Theme.title.primary}>Times</Title>
+        <Subtitle color={Theme.title.secondary}>La Liga</Subtitle>
+      </Box>
+      <Card width="95vmin" height="50vmax">
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: "80%" }} aria-label="simple table">
+            <TableHead sx={{ backgroundColor: Theme.secondaryBg }}>
+              <TableRow>
+                <TableCell sx={headerCellStyle}>Logo</TableCell>
+                <TableCell sx={headerCellStyle}>Posição</TableCell>
+                <TableCell sx={headerCellStyle}>Nome</TableCell>
+                <TableCell sx={headerCellStyle}>PTS</TableCell>
+                <TableCell sx={headerCellStyle}>V</TableCell>
+                <TableCell sx={headerCellStyle}>E</TableCell>
+                <TableCell sx={headerCellStyle}>D</TableCell>
+                <TableCell sx={headerCellStyle}>GM</TableCell>
+                <TableCell sx={headerCellStyle}>GC</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {teams?.map((team: IStandings) => (
+                <TableRow
+                  key={team.team_id}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    <img
+                      style={{ maxWidth: "3em" }}
+                      src={team.team_badge}
+                      alt="team_logo"
+                    />
+                  </TableCell>
+                  <TableCell sx={bodyCellStyle} component="th" scope="row">
+                    {team.overall_league_position}
+                  </TableCell>
+                  <TableCell sx={bodyCellStyle} component="th" scope="row">
+                    {team.team_name}
+                  </TableCell>
+                  <TableCell sx={bodyCellStyle} component="th" scope="row">
+                    {team.overall_league_PTS}
+                  </TableCell>
+                  <TableCell sx={bodyCellStyle} component="th" scope="row">
+                    {team.overall_league_W}
+                  </TableCell>
+                  <TableCell sx={bodyCellStyle} component="th" scope="row">
+                    {team.overall_league_D}
+                  </TableCell>
+                  <TableCell sx={bodyCellStyle} component="th" scope="row">
+                    {team.overall_league_L}
+                  </TableCell>
+                  <TableCell sx={bodyCellStyle} component="th" scope="row">
+                    {team.overall_league_GF}
+                  </TableCell>
+                  <TableCell sx={bodyCellStyle} component="th" scope="row">
+                    {team.overall_league_GA}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </Card>
     </Container>
   );

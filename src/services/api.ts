@@ -8,7 +8,7 @@ const api = axios.create({
 const apiKey =
   "4982a75d8a59feb1df3929d79e015fe3e6055b41029252b5706b5fcdc8f6bf00";
 
-export function getTeams<T = unknown>() {
+export function getStandings<T = unknown>() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [data, setData] = useState<T | null>(null);
 
@@ -16,9 +16,9 @@ export function getTeams<T = unknown>() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const config: AxiosRequestConfig = {
     params: {
-      action: "get_teams",
+      action: "get_standings",
       APIkey: apiKey,
-      league_id: 300, //Spain league
+      league_id: 302, //La Liga
     },
   };
 

@@ -6,8 +6,4 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   gap: 5vmax;
-
-  h1 {
-    align-self: flex-start;
-  }
 `;

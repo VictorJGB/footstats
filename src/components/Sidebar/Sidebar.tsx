@@ -31,6 +31,7 @@ const Sidebar = () => {
               flexDirection: "row",
               justifyContent: "center",
               alignItems: "center",
+              marginBottom: "10%",
               color: Theme.sidebar.textColor,
             }}
           >
