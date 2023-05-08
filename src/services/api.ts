@@ -31,3 +31,27 @@ export function getStandings<T = unknown>() {
 
   return { data };
 }
+
+export function getTeams<T = unknown>() {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [data, setData] = useState<T | null>(null);
+
+  //   base configurations for the request
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const config: AxiosRequestConfig = {
+    params: {
+      action: "get_teams",
+      APIkey: apiKey,
+      league_id: 302, //La Liga
+    },
+  };
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  useEffect(() => {
+    api.get("", config).then((res) => {
+      setData(res.data);
+    });
+  }, [config]);
+
+  return { data };
+}

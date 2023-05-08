@@ -15,7 +15,6 @@ import {
 import Theme from "../../styles/Theme";
 
 import { IStandings } from "../../interface/IStandings";
-import { ICoach } from "../../interface/ICoach";
 import Subtitle from "../../components/Subtitle/Subtitle";
 
 const TeamsPage = () => {
@@ -45,7 +44,7 @@ const TeamsPage = () => {
           gap: "0.5em",
         }}
       >
-        <Title color={Theme.title.primary}>Times</Title>
+        <Title color={Theme.title.primary}>Estatísticas de times</Title>
         <Subtitle color={Theme.title.secondary}>La Liga</Subtitle>
       </Box>
       <Card width="95vmin" height="50vmax">
