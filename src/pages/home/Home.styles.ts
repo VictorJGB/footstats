@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 import { Button } from "@mui/material";
-import Theme from "../../styles/Theme";
 
 export const Container = styled.div`
   width: 100%;
@@ -30,21 +29,6 @@ export const ButtonsBox = styled.div`
   border-radius: 16px;
 `;
 
-export const Title = styled.h1`
-  font-size: 5vmin;
-  color: ${(props) => props.color};
-`;
-export const SubTitle = styled.h2`
-  font-size: 2.5vmin;
-  font-weight: 500;
-
-  color: ${(props) => props.color};
-`;
-
 export const Bold = styled.strong`
   color: ${(Props) => Props.theme.bold.color};
 `;
-
-export const IconButton = styled(Button)({
-  backgroundColor: "white",
-});
