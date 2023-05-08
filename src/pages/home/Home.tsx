@@ -1,4 +1,4 @@
-import { Bold, ButtonsBox, Container, TitleContainer } from "./Home.styles";
+import { Bold, Container, TitleContainer } from "./Home.styles";
 
 import Title from "../../components/Title/Title";
 import Subtitle from "../../components/Subtitle/Subtitle";
@@ -11,6 +11,7 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import PersonIcon from "@mui/icons-material/Person";
 import DateRangeIcon from "@mui/icons-material/DateRange";
 import IconButton from "../../components/IconButton/IconButton";
+import Card from "../../components/Card/Card";
 
 const HomePage = () => {
   return (
@@ -27,7 +28,7 @@ const HomePage = () => {
       </TitleContainer>
 
       {/* Buttons box */}
-      <ButtonsBox>
+      <Card width={"70vmin"} height={"25vmax"} bgColor={Theme.secondaryBg}>
         <Subtitle fontSize={"2.5em"} color={Theme.title.white}>
           Escolha uma ação
         </Subtitle>
@@ -49,7 +50,7 @@ const HomePage = () => {
             Partidas
           </IconButton>
         </Box>
-      </ButtonsBox>
+      </Card>
     </Container>
   );
 };

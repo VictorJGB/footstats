@@ -1,11 +1,14 @@
+import { ReactNode } from "react";
 import { StyledH2 } from "./Subtitle.styles";
 
-const Subtitle = (props: any) => {
-  return (
-    <StyledH2 fontSize={props.fontSize} color={props.color}>
-      {props.children}
-    </StyledH2>
-  );
+type Props = {
+  children?: ReactNode;
+  fontSize?: string;
+  color?: string;
+};
+
+const Subtitle = (props: Props) => {
+  return <StyledH2 {...props}>{props.children}</StyledH2>;
 };
 
 export default Subtitle;

@@ -43,8 +43,8 @@ const Sidebar = () => {
             <h1>Footstats</h1>
           </Stack>
         </Toolbar>
-        {appRoutes.map((route) =>
-          route.sidebarProps ? <SideBarItem item={route} /> : null
+        {appRoutes.map((route, index) =>
+          route.sidebarProps ? <SideBarItem key={index} item={route} /> : null
         )}
       </List>
     </Drawer>

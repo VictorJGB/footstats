@@ -1,5 +1,5 @@
 {
-  "name": "my-vue-app",
+  "name": "footstats",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -16,6 +16,7 @@
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.3",
     "@reduxjs/toolkit": "^1.9.5",
+    "@types/node": "^20.1.0",
     "axios": "^1.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -23,6 +24,7 @@
     "react-router": "^6.11.1",
     "react-router-dom": "^6.11.1",
     "sass": "^1.62.1",
+    "save-dev": "^0.0.1-security",
     "styled-components": "^5.3.10"
   },
   "devDependencies": {
