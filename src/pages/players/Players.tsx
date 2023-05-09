@@ -16,7 +16,7 @@ import {
 
 import { useState } from "react";
 
-import { Container, StyledInput } from "./Players.styles";
+import { Container } from "./Players.styles";
 
 import { ITeam } from "../../interface/ITeam";
 import { getTeams } from "../../services/api";

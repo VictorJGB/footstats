@@ -1,17 +1,25 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.scss";
-import MainLayout from "../components/layout/MainLayout";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { routes } from "../routes";
+
+import MainLayout from "../components/layout/MainLayout";
+
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import "dayjs/locale/pt-br";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<MainLayout />}>
-          {routes}
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={"pt-br"}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<MainLayout />}>
+            {routes}
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </LocalizationProvider>
   );
 }
 

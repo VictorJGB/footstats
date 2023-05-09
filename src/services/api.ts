@@ -56,3 +56,39 @@ export function getTeams<T = unknown>(teamId?: number) {
 
   return { data };
 }
+
+export function getMatches<T = unknown>(
+  leagueId: number,
+  fromDate: string,
+  toDate: string
+) {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [data, setData] = useState<T | null>(null);
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [isLoading, setIsLoading] = useState<boolean | null>(true);
+
+  //   base configurations for the request
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const config: AxiosRequestConfig = {
+    params: {
+      action: "get_events",
+      APIkey: apiKey,
+      league_id: leagueId,
+      from: fromDate,
+      to: toDate,
+    },
+  };
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  useEffect(() => {
+    api
+      .get("", config)
+      .then((res) => {
+        setData(res.data);
+      })
+      .finally(() => setIsLoading(false));
+  }, [config]);
+
+  return { data, isLoading };
+}
