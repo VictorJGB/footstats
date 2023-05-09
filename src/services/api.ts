@@ -32,7 +32,7 @@ export function getStandings<T = unknown>() {
   return { data };
 }
 
-export function getTeams<T = unknown>() {
+export function getTeams<T = unknown>(teamId?: number) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [data, setData] = useState<T | null>(null);
 
@@ -42,6 +42,7 @@ export function getTeams<T = unknown>() {
     params: {
       action: "get_teams",
       APIkey: apiKey,
+      team_id: teamId ?? "",
       league_id: 302, //La Liga
     },
   };
