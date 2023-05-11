@@ -1,4 +1,5 @@
 export interface IMatches {
+  error: string;
   match_id: string;
   match_date: string;
   match_time: string;

@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from "axios";
+import axios, { AxiosError, AxiosRequestConfig } from "axios";
 import { useEffect, useState } from "react";
 
 const api = axios.create({
@@ -64,7 +64,7 @@ export function useMatchesRequest<T = unknown>(
 ) {
   const [data, setData] = useState<T | null>(null);
   const [isLoading, setIsLoading] = useState<boolean | null>(true);
-  const [error, setError] = useState<string | null>("");
+  const [error, setError] = useState<Error | null>();
 
   //   base configurations for the request
   useEffect(() => {
@@ -84,7 +84,7 @@ export function useMatchesRequest<T = unknown>(
         setData(res.data);
       })
       .catch((err) => {
-        setError(err.toJSON());
+        setError(err);
       })
       .finally(() => setIsLoading(false));
   }, [fromDate, leagueId, toDate]);

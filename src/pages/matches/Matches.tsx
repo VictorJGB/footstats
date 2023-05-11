@@ -5,7 +5,9 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import {
   Box,
+  Button,
   Paper,
+  Skeleton,
   Table,
   TableBody,
   TableCell,
@@ -32,7 +34,11 @@ const MatchesPage = () => {
   const [formatFromDate, setFormatFromDate] = useState<string | null>("");
   const [formatToDate, setFormatToDate] = useState<string | null>("");
 
-  const { data: matches, error } = useMatchesRequest<IMatches[]>(
+  const {
+    data: matches,
+    error,
+    isLoading,
+  } = useMatchesRequest<IMatches[]>(
     302,
     formatFromDate ?? "2022-10-01",
     formatToDate ?? "2023-02-11"
@@ -60,27 +66,29 @@ const MatchesPage = () => {
         sx={{
           margin: "5vh",
           width: "80%",
-          display: "column",
+          display: "flex",
+          flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
           textAlign: "center",
         }}
       >
         <Subtitle color={Theme.title.secondary}>
-          Escolhe as datas das partidas
+          Escolha as datas das partidas
         </Subtitle>
         <DemoContainer
           sx={{
             margin: "2%",
             width: "100%",
-            display: "column",
+            display: "flex",
+            flexDirection: "row",
             alignItems: "center",
             justifyContent: "space-around",
           }}
           components={["DatePicker", "DatePicker"]}
         >
           <DatePicker
-            label="Data inicial"
+            label="De"
             disableFuture
             value={fromDate}
             onChange={(fromDate) => {
@@ -89,14 +97,9 @@ const MatchesPage = () => {
                 fromDate != null ? fromDate?.format("YYYY-MM-DD") : ""
               );
             }}
-            slotProps={{
-              textField: {
-                helperText: "YYYY/MM/DD",
-              },
-            }}
           />
           <DatePicker
-            label="Data final"
+            label="Até"
             disableFuture
             value={toDate}
             onChange={(toDate) => {
@@ -105,16 +108,11 @@ const MatchesPage = () => {
                 toDate != undefined ? toDate?.format("YYYY-MM-DD") : ""
               );
             }}
-            slotProps={{
-              textField: {
-                helperText: "YYYY/MM/DD",
-              },
-            }}
           />
         </DemoContainer>
       </Box>
 
-      {matches != null && error == null ? (
+      {matches != null && matches != undefined && matches.error == null ? (
         <Card width="70vw" height="60vh">
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: "80%" }} aria-label="simple table">
@@ -166,7 +164,11 @@ const MatchesPage = () => {
             </Table>
           </TableContainer>
         </Card>
-      ) : null}
+      ) : (
+        isLoading && (
+          <Skeleton variant="rounded" width={"70vw"} height={"60vh"} />
+        )
+      )}
     </Container>
   );
 };
