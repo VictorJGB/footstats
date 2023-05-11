@@ -4,6 +4,7 @@ import { Container } from "./Matches.styles";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import {
+  Box,
   Paper,
   Table,
   TableBody,
@@ -21,6 +22,8 @@ import Card from "../../components/Card/Card";
 import dayjs, { Dayjs } from "dayjs";
 
 import { useMatchesRequest } from "../../services/api";
+import Subtitle from "../../components/Subtitle/Subtitle";
+import Title from "../../components/Title/Title";
 
 const MatchesPage = () => {
   const [fromDate, setFromDate] = useState<Dayjs | null>(dayjs(""));
@@ -50,52 +53,66 @@ const MatchesPage = () => {
 
   return (
     <Container>
-      <h1>MatchesPage works!!</h1>
+      <Title color={Theme.title.primary}>Estatística de partidas</Title>
 
       {/* Date box */}
-      <DemoContainer
+      <Box
         sx={{
-          margin: "3vh",
+          margin: "5vh",
           width: "80%",
-          display: "flex",
+          display: "column",
           alignItems: "center",
-          justifyContent: "space-around",
+          justifyContent: "center",
+          textAlign: "center",
         }}
-        components={["DatePicker", "DatePicker"]}
       >
-        <DatePicker
-          label="Data inicial"
-          disableFuture
-          value={fromDate}
-          onChange={(fromDate) => {
-            setFromDate(fromDate);
-            setFormatFromDate(
-              fromDate != null ? fromDate?.format("YYYY-MM-DD") : ""
-            );
+        <Subtitle color={Theme.title.secondary}>
+          Escolhe as datas das partidas
+        </Subtitle>
+        <DemoContainer
+          sx={{
+            margin: "2%",
+            width: "100%",
+            display: "column",
+            alignItems: "center",
+            justifyContent: "space-around",
           }}
-          slotProps={{
-            textField: {
-              helperText: "YYYY/MM/DD",
-            },
-          }}
-        />
-        <DatePicker
-          label="Data final"
-          disableFuture
-          value={toDate}
-          onChange={(toDate) => {
-            setToDate(toDate);
-            setFormatToDate(
-              toDate != undefined ? toDate?.format("YYYY-MM-DD") : ""
-            );
-          }}
-          slotProps={{
-            textField: {
-              helperText: "YYYY/MM/DD",
-            },
-          }}
-        />
-      </DemoContainer>
+          components={["DatePicker", "DatePicker"]}
+        >
+          <DatePicker
+            label="Data inicial"
+            disableFuture
+            value={fromDate}
+            onChange={(fromDate) => {
+              setFromDate(fromDate);
+              setFormatFromDate(
+                fromDate != null ? fromDate?.format("YYYY-MM-DD") : ""
+              );
+            }}
+            slotProps={{
+              textField: {
+                helperText: "YYYY/MM/DD",
+              },
+            }}
+          />
+          <DatePicker
+            label="Data final"
+            disableFuture
+            value={toDate}
+            onChange={(toDate) => {
+              setToDate(toDate);
+              setFormatToDate(
+                toDate != undefined ? toDate?.format("YYYY-MM-DD") : ""
+              );
+            }}
+            slotProps={{
+              textField: {
+                helperText: "YYYY/MM/DD",
+              },
+            }}
+          />
+        </DemoContainer>
+      </Box>
 
       {matches != null && error == null ? (
         <Card width="70vw" height="60vh">
