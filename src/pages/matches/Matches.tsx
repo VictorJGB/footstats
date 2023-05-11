@@ -20,19 +20,20 @@ import { IMatches } from "../../interface/IMatches";
 import Card from "../../components/Card/Card";
 import dayjs, { Dayjs } from "dayjs";
 
-import { getMatches } from "../../services/api";
+import { useMatchesRequest } from "../../services/api";
 
 const MatchesPage = () => {
-  const { data: matches } = getMatches<IMatches[]>(
-    302,
-    formatFromDate,
-    formatToDate
-  );
   const [fromDate, setFromDate] = useState<Dayjs | null>(dayjs(""));
   const [toDate, setToDate] = useState<Dayjs | null>(dayjs(""));
 
   const [formatFromDate, setFormatFromDate] = useState<string | null>("");
   const [formatToDate, setFormatToDate] = useState<string | null>("");
+
+  const { data: matches, error } = useMatchesRequest<IMatches[]>(
+    302,
+    formatFromDate ?? "2022-10-01",
+    formatToDate ?? "2023-02-11"
+  );
 
   const headerCellStyle = {
     color: Theme.title.white,
@@ -69,7 +70,7 @@ const MatchesPage = () => {
           onChange={(fromDate) => {
             setFromDate(fromDate);
             setFormatFromDate(
-              fromDate != undefined ? fromDate?.format("YYYY-MM-DD") : ""
+              fromDate != null ? fromDate?.format("YYYY-MM-DD") : ""
             );
           }}
           slotProps={{
@@ -96,7 +97,7 @@ const MatchesPage = () => {
         />
       </DemoContainer>
 
-      {formatFromDate?.length > 0 && formatToDate?.length > 0 ? (
+      {matches != null && error == null ? (
         <Card width="70vw" height="60vh">
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: "80%" }} aria-label="simple table">
@@ -114,38 +115,36 @@ const MatchesPage = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {matches != null || matches != ""
-                  ? matches?.map((match: IMatches) => (
-                      <TableRow
-                        key={match.match_id}
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                      >
-                        <TableCell component="th" scope="row">
-                          {match.match_date != "" ? match.match_date : "-"}
-                        </TableCell>
-                        <TableCell component="th" scope="row">
-                          {match.team_home_badge != "" || null ? (
-                            <img
-                              style={{ maxWidth: "3em" }}
-                              src={match.team_home_badge}
-                              alt="visitante"
-                            />
-                          ) : (
-                            <img
-                              style={{ maxWidth: "3em" }}
-                              src={assets.images.logo}
-                              alt="sem logo"
-                            />
-                          )}
-                        </TableCell>
-                        <TableCell component="th" scope="row">
-                          {match.match_time != "" ? match.match_time : "-"}
-                        </TableCell>
-                      </TableRow>
-                    ))
-                  : null}
+                {matches.map((match: IMatches) => (
+                  <TableRow
+                    key={match.match_id}
+                    sx={{
+                      "&:last-child td, &:last-child th": { border: 0 },
+                    }}
+                  >
+                    <TableCell component="th" scope="row" sx={bodyCellStyle}>
+                      {match.match_date != "" ? match.match_date : "-"}
+                    </TableCell>
+                    <TableCell component="th" scope="row" sx={bodyCellStyle}>
+                      {match.team_home_badge != "" || null ? (
+                        <img
+                          style={{ maxWidth: "3em" }}
+                          src={match.team_home_badge}
+                          alt="visitante"
+                        />
+                      ) : (
+                        <img
+                          style={{ maxWidth: "3em" }}
+                          src={assets.images.logo}
+                          alt="sem logo"
+                        />
+                      )}
+                    </TableCell>
+                    <TableCell component="th" scope="row" sx={bodyCellStyle}>
+                      {match.match_time != "" ? match.match_time : "-"}
+                    </TableCell>
+                  </TableRow>
+                ))}
               </TableBody>
             </Table>
           </TableContainer>
