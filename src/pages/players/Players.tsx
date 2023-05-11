@@ -6,6 +6,7 @@ import {
   Paper,
   Select,
   SelectChangeEvent,
+  Skeleton,
   Table,
   TableBody,
   TableCell,
@@ -19,7 +20,7 @@ import { useState } from "react";
 import { Container } from "./Players.styles";
 
 import { ITeam } from "../../interface/ITeam";
-import { getTeams } from "../../services/api";
+import { useTeams } from "../../services/api";
 
 import Title from "../../components/Title/Title";
 import Card from "../../components/Card/Card";
@@ -28,7 +29,7 @@ import { IPlayer } from "../../interface/IPlayer";
 import assets from "../../assets";
 
 const PlayersPage = () => {
-  const { data: teams } = getTeams<ITeam[]>();
+  const { data: teams, isLoading } = useTeams<ITeam[]>();
   const [teamSearch, setTeamSearch] = useState("");
 
   const filteredTeam: ITeam | undefined =
@@ -195,7 +196,12 @@ const PlayersPage = () => {
             </Table>
           </TableContainer>
         </Card>
-      ) : null}
+      ) : (
+        // Skeleton while the request is being made
+        isLoading && (
+          <Skeleton variant="rounded" width={"70vw"} height={"60vh"} />
+        )
+      )}
     </Container>
   );
 };

@@ -165,6 +165,7 @@ const MatchesPage = () => {
           </TableContainer>
         </Card>
       ) : (
+        // Skeleton while the request is being made
         isLoading && (
           <Skeleton variant="rounded" width={"70vw"} height={"60vh"} />
         )
