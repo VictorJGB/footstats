@@ -1,11 +1,14 @@
+import { ReactNode } from "react";
 import { StyledH1 } from "./Title.styles";
 
-const Title = (props: any) => {
-  return (
-    <StyledH1 fontSize={props.fontSize} color={props.color}>
-      {props.children}
-    </StyledH1>
-  );
+type Props = {
+  children?: ReactNode;
+  fontSize?: string;
+  color?: string;
+};
+
+const Title = (props: Props) => {
+  return <StyledH1 {...props}>{props.children}</StyledH1>;
 };
 
 export default Title;

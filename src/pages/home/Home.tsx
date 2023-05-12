@@ -3,15 +3,26 @@ import { Bold, Container, TitleContainer } from "./Home.styles";
 import Title from "../../components/Title/Title";
 import Subtitle from "../../components/Subtitle/Subtitle";
 
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 
 import Theme from "../../styles/Theme";
 
 import GroupsIcon from "@mui/icons-material/Groups";
 import PersonIcon from "@mui/icons-material/Person";
 import DateRangeIcon from "@mui/icons-material/DateRange";
-import IconButton from "../../components/IconButton/IconButton";
 import Card from "../../components/Card/Card";
+
+const btnStyle = {
+  padding: "3% 5%",
+  margin: "2%",
+  backgroundColor: Theme.background.primary,
+  color: Theme.title.white,
+  transition: "0.5s ease",
+
+  "&: hover": {
+    backgroundColor: Theme.background.hoverBg,
+  },
+};
 
 const HomePage = () => {
   return (
@@ -28,7 +39,7 @@ const HomePage = () => {
       </TitleContainer>
 
       {/* Buttons box */}
-      <Card width={"70vmin"} height={"25vmax"} bgColor={Theme.secondaryBg}>
+      <Card width={"70vmin"} height={"25vmax"} bgColor={Theme.background.dark}>
         <Subtitle fontSize={"2.5em"} color={Theme.title.white}>
           Escolha uma ação
         </Subtitle>
@@ -40,15 +51,15 @@ const HomePage = () => {
             justifyContent: "center",
           }}
         >
-          <IconButton href="/teams" startIcon={<GroupsIcon />}>
+          <Button sx={btnStyle} href="/teams" startIcon={<GroupsIcon />}>
             Times
-          </IconButton>
-          <IconButton href="/players" startIcon={<PersonIcon />}>
+          </Button>
+          <Button sx={btnStyle} href="/players" startIcon={<PersonIcon />}>
             Jogadores
-          </IconButton>
-          <IconButton href="/matches" startIcon={<DateRangeIcon />}>
+          </Button>
+          <Button sx={btnStyle} href="/matches" startIcon={<DateRangeIcon />}>
             Partidas
-          </IconButton>
+          </Button>
         </Box>
       </Card>
     </Container>

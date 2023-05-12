@@ -71,7 +71,7 @@ export function useMatchesRequest<T = unknown>(
 ) {
   const [data, setData] = useState<T | null>(null);
   const [isLoading, setIsLoading] = useState<boolean | null>(true);
-  const [error, setError] = useState<Error | null>();
+  const [error, setError] = useState<string | null>(null);
 
   //   base configurations for the request
   useEffect(() => {
@@ -91,7 +91,10 @@ export function useMatchesRequest<T = unknown>(
         setData(res.data);
       })
       .catch((err) => {
-        setError(err);
+        if (err.response) {
+          console.error(err.response.data);
+          setError(err.response.status);
+        }
       })
       .finally(() => setIsLoading(false));
   }, [fromDate, leagueId, toDate]);

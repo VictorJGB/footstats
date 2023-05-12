@@ -25,6 +25,7 @@ import dayjs, { Dayjs } from "dayjs";
 import { useMatchesRequest } from "../../services/api";
 import Subtitle from "../../components/Subtitle/Subtitle";
 import Title from "../../components/Title/Title";
+import TableStyle from "../../styles/TableStyle";
 
 const MatchesPage = () => {
   const [fromDate, setFromDate] = useState<Dayjs | null>(dayjs(""));
@@ -43,28 +44,16 @@ const MatchesPage = () => {
     formatToDate ?? "2023-02-11"
   );
 
-  const headerCellStyle = {
-    color: Theme.title.white,
-    fontSize: "1.3em",
-    fontWeight: 700,
-    textAlign: "center",
-  };
-
-  const bodyCellStyle = {
-    color: Theme.title.black,
-    fontSize: "1.1em",
-    fontWeight: 500,
-    textAlign: "center",
-  };
-
   return (
     <Container>
-      <Title color={Theme.title.primary}>Estatística de partidas</Title>
+      <Title color={Theme.title.primary} fontSize={"6vmin"}>
+        Estatística de partidas
+      </Title>
 
       {/* Date box */}
       <Box
         sx={{
-          margin: "5vh",
+          margin: "3vh",
           width: "80%",
           display: "flex",
           flexDirection: "column",
@@ -73,12 +62,12 @@ const MatchesPage = () => {
           textAlign: "center",
         }}
       >
-        <Subtitle color={Theme.title.secondary}>
+        <Subtitle color={Theme.title.secondary} fontSize={"3vmin"}>
           Escolha as datas das partidas
         </Subtitle>
         <DemoContainer
           sx={{
-            margin: "2%",
+            margin: "1.5%",
             width: "100%",
             display: "flex",
             flexDirection: "row",
@@ -112,34 +101,34 @@ const MatchesPage = () => {
         </DemoContainer>
       </Box>
 
-      {matches != null && matches != undefined && matches.error == null ? (
-        <Card width="70vw" height="60vh">
+      {matches != null && matches.error == null ? (
+        <Card width="70vw" height="65vh">
           <TableContainer component={Paper}>
-            <Table sx={{ minWidth: "80%" }} aria-label="simple table">
-              <TableHead sx={{ backgroundColor: Theme.secondaryBg }}>
+            <Table sx={{ minWidth: "100%" }} aria-label="simple table">
+              <TableHead sx={{ backgroundColor: Theme.background.dark }}>
                 <TableRow>
-                  <TableCell sx={headerCellStyle} title="Data da partida">
+                  <TableCell sx={TableStyle.headerCell} title="Data da partida">
                     Data
                   </TableCell>
-                  <TableCell sx={headerCellStyle} title="Mandante">
+                  <TableCell sx={TableStyle.headerCell} title="Mandante">
                     Mandante
                   </TableCell>
-                  <TableCell sx={headerCellStyle} title="Gols mandante">
+                  <TableCell sx={TableStyle.headerCell} title="Gols mandante">
                     PTS
                   </TableCell>
-                  <TableCell sx={headerCellStyle} title="Horário">
+                  <TableCell sx={TableStyle.headerCell} title="Horário">
                     Horário
                   </TableCell>
-                  <TableCell sx={headerCellStyle} title="Gols visitante">
+                  <TableCell sx={TableStyle.headerCell} title="Gols visitante">
                     PTS
                   </TableCell>
-                  <TableCell sx={headerCellStyle} title="Visitante">
+                  <TableCell sx={TableStyle.headerCell} title="Visitante">
                     Visitante
                   </TableCell>
-                  <TableCell sx={headerCellStyle} title="Juiz">
+                  <TableCell sx={TableStyle.headerCell} title="Juiz">
                     Juiz
                   </TableCell>
-                  <TableCell sx={headerCellStyle} title="Estádio">
+                  <TableCell sx={TableStyle.headerCell} title="Estádio">
                     Estádio
                   </TableCell>
                 </TableRow>
@@ -152,10 +141,18 @@ const MatchesPage = () => {
                       "&:last-child td, &:last-child th": { border: 0 },
                     }}
                   >
-                    <TableCell component="th" scope="row" sx={bodyCellStyle}>
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      sx={TableStyle.bodyCell}
+                    >
                       {match.match_date != "" ? match.match_date : "-"}
                     </TableCell>
-                    <TableCell component="th" scope="row" sx={bodyCellStyle}>
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      sx={TableStyle.bodyCell}
+                    >
                       {match.team_home_badge != "" || null ? (
                         <img
                           style={{ maxWidth: "3em" }}
@@ -171,20 +168,36 @@ const MatchesPage = () => {
                         />
                       )}
                     </TableCell>
-                    <TableCell component="th" scope="row" sx={bodyCellStyle}>
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      sx={TableStyle.bodyCell}
+                    >
                       {match.match_hometeam_score != ""
                         ? match.match_hometeam_score
                         : "-"}
                     </TableCell>
-                    <TableCell component="th" scope="row" sx={bodyCellStyle}>
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      sx={TableStyle.bodyCell}
+                    >
                       {match.match_time != "" ? match.match_time : "-"}
                     </TableCell>
-                    <TableCell component="th" scope="row" sx={bodyCellStyle}>
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      sx={TableStyle.bodyCell}
+                    >
                       {match.match_awayteam_score != ""
                         ? match.match_awayteam_score
                         : "-"}
                     </TableCell>
-                    <TableCell component="th" scope="row" sx={bodyCellStyle}>
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      sx={TableStyle.bodyCell}
+                    >
                       {match.team_away_badge && (
                         <img
                           style={{ maxWidth: "3em" }}
@@ -194,10 +207,18 @@ const MatchesPage = () => {
                         ></img>
                       )}
                     </TableCell>
-                    <TableCell component="th" scope="row" sx={bodyCellStyle}>
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      sx={TableStyle.bodyCell}
+                    >
                       {match.match_referee != "" ? match.match_referee : "-"}
                     </TableCell>
-                    <TableCell component="th" scope="row" sx={bodyCellStyle}>
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      sx={TableStyle.bodyCell}
+                    >
                       {match.match_stadium != "" ? match.match_stadium : "-"}
                     </TableCell>
                   </TableRow>
@@ -208,9 +229,10 @@ const MatchesPage = () => {
         </Card>
       ) : (
         // Skeleton while the request is being made
+        (error != null && console.log(error),
         isLoading && (
           <Skeleton variant="rounded" width={"70vw"} height={"60vh"} />
-        )
+        ))
       )}
     </Container>
   );

@@ -1,4 +1,13 @@
-import themeColors from "./ThemeColors";
+const themeColors = {
+  main: {
+    primary: "#EF065B",
+    secondary: "#5F3051",
+    white: "#eeeeee",
+    black: "#333",
+  },
+  bg: "#2A1423",
+  hoverBg: "#442239",
+};
 
 const Theme = {
   sidebar: {
@@ -17,9 +26,14 @@ const Theme = {
   bold: {
     color: themeColors.main.primary,
   },
-  mainBg: themeColors.main.white,
-  secondaryBg: themeColors.bg,
-  tertiaryBg: themeColors.main.primary,
+  background: {
+    primary: themeColors.main.primary,
+    dark: themeColors.bg,
+    light: themeColors.main.secondary,
+    white: themeColors.main.primary,
+    black: themeColors.main.primary,
+    hoverBg: themeColors.hoverBg,
+  },
 };
 
 export default Theme;

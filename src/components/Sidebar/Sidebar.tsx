@@ -1,4 +1,6 @@
 import { Avatar, Drawer, List, Stack, Toolbar } from "@mui/material";
+import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
+
 import assets from "../../assets";
 import Theme from "../../styles/Theme";
 import appRoutes from "../../routes/appRoutes";
@@ -29,6 +31,7 @@ const Sidebar = () => {
               width: "100%",
               direction: "row",
               flexDirection: "row",
+              padding: "3%",
               justifyContent: "center",
               alignItems: "center",
               marginBottom: "10%",
@@ -36,11 +39,14 @@ const Sidebar = () => {
             }}
           >
             <Avatar
-              src={assets.images.logo}
               sx={{
-                width: "4vmin",
+                backgroundColor: "transparent",
               }}
-            />
+            >
+              <SportsSoccerIcon
+                sx={{ fontSize: "5vmin", color: Theme.title.primary }}
+              />
+            </Avatar>
             <h1>Footstats</h1>
           </Stack>
         </Toolbar>

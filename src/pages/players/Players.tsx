@@ -27,6 +27,7 @@ import Card from "../../components/Card/Card";
 import Theme from "../../styles/Theme";
 import { IPlayer } from "../../interface/IPlayer";
 import assets from "../../assets";
+import TableStyle from "../../styles/TableStyle";
 
 const PlayersPage = () => {
   const { data: teams, isLoading } = useTeams<ITeam[]>();
@@ -41,38 +42,35 @@ const PlayersPage = () => {
     setTeamSearch(event.target.value as string);
   };
 
-  const headerCellStyle = {
-    color: Theme.title.white,
-    fontSize: "1.3em",
-    fontWeight: 700,
-  };
-
-  const bodyCellStyle = {
-    color: Theme.title.black,
-    fontSize: "1.1em",
-    fontWeight: 500,
-    textAlign: "center",
-  };
-
   return (
     <Container>
-      <Title>Estatísticas de jogadores</Title>
+      <Title color={Theme.title.primary} fontSize="6vmin">
+        Estatísticas de jogadores
+      </Title>
+
+      {/* Select box */}
       <Box
         sx={{
-          width: "25%",
-          "&::value": { color: "black" },
+          width: "20vw",
           margin: "2%",
           alignSelf: "flex-start",
         }}
       >
         <FormControl fullWidth>
-          <InputLabel id="teamSelectLabel">Escolha seu time</InputLabel>
+          <InputLabel id="teamSelectLabel">Time</InputLabel>
           <Select
             labelId="teamSelectLabel"
             id="teamSelect"
             value={teamSearch}
             label="Team"
             onChange={handleChange}
+            MenuProps={{
+              PaperProps: {
+                sx: {
+                  color: Theme.title.secondary,
+                },
+              },
+            }}
           >
             {teams?.map((team: ITeam) => (
               <MenuItem key={team.team_key} value={team.team_name}>
@@ -82,34 +80,45 @@ const PlayersPage = () => {
           </Select>
         </FormControl>
       </Box>
+
+      {/* Players table */}
       {teamSearch.length > 0 ? (
         <Card width="70vw" height="60vh">
           <TableContainer component={Paper}>
-            <Table sx={{ minWidth: "80%" }} aria-label="simple table">
-              <TableHead sx={{ backgroundColor: Theme.secondaryBg }}>
+            <Table sx={{ minWidth: "80%" }} aria-label="players table">
+              <TableHead sx={{ backgroundColor: Theme.background.dark }}>
                 <TableRow>
-                  <TableCell sx={headerCellStyle} title="Imagem">
+                  <TableCell sx={TableStyle.headerCell} title="Imagem">
                     IMG
                   </TableCell>
-                  <TableCell sx={headerCellStyle} title="Número">
+                  <TableCell sx={TableStyle.headerCell} title="Número">
                     Nº
                   </TableCell>
-                  <TableCell sx={headerCellStyle} title="Nome">
+                  <TableCell sx={TableStyle.headerCell} title="Nome">
                     Nome
                   </TableCell>
-                  <TableCell sx={headerCellStyle} title="Avaliação">
+                  <TableCell sx={TableStyle.headerCell} title="Avaliação">
                     PTS
                   </TableCell>
-                  <TableCell sx={headerCellStyle} title="Partidas jogadas">
+                  <TableCell
+                    sx={TableStyle.headerCell}
+                    title="Partidas jogadas"
+                  >
                     PJ
                   </TableCell>
-                  <TableCell sx={headerCellStyle} title="Gols marcados">
+                  <TableCell sx={TableStyle.headerCell} title="Gols marcados">
                     GM
                   </TableCell>
-                  <TableCell sx={headerCellStyle} title="Cartões amarelos">
+                  <TableCell
+                    sx={TableStyle.headerCell}
+                    title="Cartões amarelos"
+                  >
                     CA
                   </TableCell>
-                  <TableCell sx={headerCellStyle} title="Cartões vermelhos">
+                  <TableCell
+                    sx={TableStyle.headerCell}
+                    title="Cartões vermelhos"
+                  >
                     CV
                   </TableCell>
                 </TableRow>
@@ -139,21 +148,21 @@ const PlayersPage = () => {
                           )}
                         </TableCell>
                         <TableCell
-                          sx={bodyCellStyle}
+                          sx={TableStyle.bodyCell}
                           component="th"
                           scope="row"
                         >
                           {player.player_number}
                         </TableCell>
                         <TableCell
-                          sx={bodyCellStyle}
+                          sx={TableStyle.bodyCell}
                           component="th"
                           scope="row"
                         >
                           {player.player_name}
                         </TableCell>
                         <TableCell
-                          sx={bodyCellStyle}
+                          sx={TableStyle.bodyCell}
                           component="th"
                           scope="row"
                         >
@@ -162,28 +171,28 @@ const PlayersPage = () => {
                             : "-"}
                         </TableCell>
                         <TableCell
-                          sx={bodyCellStyle}
+                          sx={TableStyle.bodyCell}
                           component="th"
                           scope="row"
                         >
                           {player.player_match_played}
                         </TableCell>
                         <TableCell
-                          sx={bodyCellStyle}
+                          sx={TableStyle.bodyCell}
                           component="th"
                           scope="row"
                         >
                           {player.player_goals}
                         </TableCell>
                         <TableCell
-                          sx={bodyCellStyle}
+                          sx={TableStyle.bodyCell}
                           component="th"
                           scope="row"
                         >
                           {player.player_yellow_cards}
                         </TableCell>
                         <TableCell
-                          sx={bodyCellStyle}
+                          sx={TableStyle.bodyCell}
                           component="th"
                           scope="row"
                         >
