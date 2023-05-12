@@ -12,4 +12,5 @@ export interface IMatches {
   team_home_badge: string;
   team_away_badge: string;
   match_referee: string;
+  match_stadium: string;
 }

@@ -5,7 +5,6 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import {
   Box,
-  Button,
   Paper,
   Skeleton,
   Table,
@@ -48,6 +47,7 @@ const MatchesPage = () => {
     color: Theme.title.white,
     fontSize: "1.3em",
     fontWeight: 700,
+    textAlign: "center",
   };
 
   const bodyCellStyle = {
@@ -121,11 +121,26 @@ const MatchesPage = () => {
                   <TableCell sx={headerCellStyle} title="Data da partida">
                     Data
                   </TableCell>
-                  <TableCell sx={headerCellStyle} title="Vistante">
-                    Visitante
+                  <TableCell sx={headerCellStyle} title="Mandante">
+                    Mandante
+                  </TableCell>
+                  <TableCell sx={headerCellStyle} title="Gols mandante">
+                    PTS
                   </TableCell>
                   <TableCell sx={headerCellStyle} title="Horário">
                     Horário
+                  </TableCell>
+                  <TableCell sx={headerCellStyle} title="Gols visitante">
+                    PTS
+                  </TableCell>
+                  <TableCell sx={headerCellStyle} title="Visitante">
+                    Visitante
+                  </TableCell>
+                  <TableCell sx={headerCellStyle} title="Juiz">
+                    Juiz
+                  </TableCell>
+                  <TableCell sx={headerCellStyle} title="Estádio">
+                    Estádio
                   </TableCell>
                 </TableRow>
               </TableHead>
@@ -145,18 +160,45 @@ const MatchesPage = () => {
                         <img
                           style={{ maxWidth: "3em" }}
                           src={match.team_home_badge}
-                          alt="visitante"
+                          alt="mandante"
                         />
                       ) : (
                         <img
                           style={{ maxWidth: "3em" }}
                           src={assets.images.logo}
+                          title={match.match_hometeam_name}
                           alt="sem logo"
                         />
                       )}
                     </TableCell>
                     <TableCell component="th" scope="row" sx={bodyCellStyle}>
+                      {match.match_hometeam_score != ""
+                        ? match.match_hometeam_score
+                        : "-"}
+                    </TableCell>
+                    <TableCell component="th" scope="row" sx={bodyCellStyle}>
                       {match.match_time != "" ? match.match_time : "-"}
+                    </TableCell>
+                    <TableCell component="th" scope="row" sx={bodyCellStyle}>
+                      {match.match_awayteam_score != ""
+                        ? match.match_awayteam_score
+                        : "-"}
+                    </TableCell>
+                    <TableCell component="th" scope="row" sx={bodyCellStyle}>
+                      {match.team_away_badge && (
+                        <img
+                          style={{ maxWidth: "3em" }}
+                          src={match.team_away_badge}
+                          title={match.match_awayteam_name}
+                          alt="visitante"
+                        ></img>
+                      )}
+                    </TableCell>
+                    <TableCell component="th" scope="row" sx={bodyCellStyle}>
+                      {match.match_referee != "" ? match.match_referee : "-"}
+                    </TableCell>
+                    <TableCell component="th" scope="row" sx={bodyCellStyle}>
+                      {match.match_stadium != "" ? match.match_stadium : "-"}
                     </TableCell>
                   </TableRow>
                 ))}
