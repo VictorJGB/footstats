@@ -1,7 +1,6 @@
 import { Avatar, Drawer, List, Stack, Toolbar } from "@mui/material";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 
-import assets from "../../assets";
 import Theme from "../../styles/Theme";
 import appRoutes from "../../routes/appRoutes";
 import SideBarItem from "./Item/Item";
