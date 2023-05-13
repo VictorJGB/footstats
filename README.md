@@ -18,11 +18,8 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#fonts">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -30,20 +27,18 @@
 
 ## About The Project
 
-content
+Get statistics about your favorite team, players and matches through this react application.
+Data collected from the <a href="https://apifootball.com/documentation/">APIfootball</a>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
 
 - ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-<!-- - [![Next][next.js]][next-url]
-- [![Vue][vue.js]][vue-url]
-- [![Angular][angular.io]][angular-url]
-- [![Svelte][svelte.dev]][svelte-url]
-- [![Laravel][laravel.com]][laravel-url]
-- [![Bootstrap][bootstrap.com]][bootstrap-url]
-- [![JQuery][jquery.com]][jquery-url] -->
+- ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+- ![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
+- ![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
+- ![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -69,15 +64,11 @@ _Below is an example of how you can instruct your audience on installing and set
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/VictorJGB/footstats.git
    ```
 2. Install NPM packages
    ```sh
    npm install
-   ```
-3. Enter your API in `config.js`
-   ```js
-   const API_KEY = "ENTER YOUR API";
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -86,8 +77,11 @@ _Below is an example of how you can instruct your audience on installing and set
 
 ## Usage
 
-- Java Development Kit 11.0+
-- Gluegen and JOGL libraries installed
+- Node v18.15+
+- React v18.2+
+- Typescript v5+
+- Material UI v5.0+
+- Axios v1.4+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -95,10 +89,18 @@ _Below is an example of how you can instruct your audience on installing and set
 
 ## Contact
 
-Victor Jerrysson - victorgb.dev@gmail.com
+- <a href = "mailto:victorgb.dev@gmail.com" target="_blank"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white" ></a>
 
-Project Link: [https://github.com/VictorJGB/prisma-jogl-project](https://github.com/VictorJGB/prisma-jogl-project)
+- <a href="https://www.linkedin.com/in/jerry-dev-084793203" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" ></a>
+
+- <a href="https://instagram.com/_jerryGB" target="_blank"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white"></a>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- ACKNOWLEDGMENTS -->
+<!-- Fonts -->
+
+## Fonts
+
+### icons
+
+[badges](https://github.com/Ileriayo/markdown-badges)
