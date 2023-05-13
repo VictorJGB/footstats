@@ -3,7 +3,7 @@ import React, { ReactNode } from "react";
 class ErrorBoundary extends React.Component<{ children: ReactNode }> {
   state = { hasError: false };
 
-  static getDerivedStateFromError(error: Error | string | null) {
+  static getDerivedStateFromError() {
     // Update state so the next render will show the fallback UI.
     return { hasError: true };
   }
