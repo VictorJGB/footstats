@@ -19,7 +19,7 @@
     </li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#fonts">Acknowledgments</a></li>
+    <li><a href="#fonts">Fonts</a></li>
   </ol>
 </details>
 
