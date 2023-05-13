@@ -26,6 +26,7 @@ import { useMatchesRequest } from "../../services/api";
 import Subtitle from "../../components/Subtitle/Subtitle";
 import Title from "../../components/Title/Title";
 import TableStyle from "../../styles/TableStyle";
+import ErrorBoundary from "../../utils/ErrorBoundary";
 
 const MatchesPage = () => {
   const [fromDate, setFromDate] = useState<Dayjs | null>(dayjs(""));
@@ -100,140 +101,147 @@ const MatchesPage = () => {
           />
         </DemoContainer>
       </Box>
-
-      {matches != null && matches.error == null ? (
-        <Card width="70vw" height="65vh">
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: "100%" }} aria-label="simple table">
-              <TableHead sx={{ backgroundColor: Theme.background.dark }}>
-                <TableRow>
-                  <TableCell sx={TableStyle.headerCell} title="Data da partida">
-                    Data
-                  </TableCell>
-                  <TableCell sx={TableStyle.headerCell} title="Mandante">
-                    Mandante
-                  </TableCell>
-                  <TableCell sx={TableStyle.headerCell} title="Gols mandante">
-                    PTS
-                  </TableCell>
-                  <TableCell sx={TableStyle.headerCell} title="Horário">
-                    Horário
-                  </TableCell>
-                  <TableCell sx={TableStyle.headerCell} title="Gols visitante">
-                    PTS
-                  </TableCell>
-                  <TableCell sx={TableStyle.headerCell} title="Visitante">
-                    Visitante
-                  </TableCell>
-                  <TableCell sx={TableStyle.headerCell} title="Juiz">
-                    Juiz
-                  </TableCell>
-                  <TableCell sx={TableStyle.headerCell} title="Estádio">
-                    Estádio
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {matches.map((match: IMatches) => (
-                  <TableRow
-                    key={match.match_id}
-                    sx={{
-                      "&:last-child td, &:last-child th": { border: 0 },
-                    }}
-                  >
+      <ErrorBoundary>
+        {matches != null && !isLoading ? (
+          <Card width="70vw" height="65vh">
+            <TableContainer component={Paper}>
+              <Table sx={{ minWidth: "100%" }} aria-label="simple table">
+                <TableHead sx={{ backgroundColor: Theme.background.dark }}>
+                  <TableRow>
                     <TableCell
-                      component="th"
-                      scope="row"
-                      sx={TableStyle.bodyCell}
+                      sx={TableStyle.headerCell}
+                      title="Data da partida"
                     >
-                      {match.match_date != "" ? match.match_date : "-"}
+                      Data
+                    </TableCell>
+                    <TableCell sx={TableStyle.headerCell} title="Mandante">
+                      Mandante
+                    </TableCell>
+                    <TableCell sx={TableStyle.headerCell} title="Gols mandante">
+                      PTS
+                    </TableCell>
+                    <TableCell sx={TableStyle.headerCell} title="Horário">
+                      Horário
                     </TableCell>
                     <TableCell
-                      component="th"
-                      scope="row"
-                      sx={TableStyle.bodyCell}
+                      sx={TableStyle.headerCell}
+                      title="Gols visitante"
                     >
-                      {match.team_home_badge != "" || null ? (
-                        <img
-                          style={{ maxWidth: "3em" }}
-                          src={match.team_home_badge}
-                          alt="mandante"
-                        />
-                      ) : (
-                        <img
-                          style={{ maxWidth: "3em" }}
-                          src={assets.images.logo}
-                          title={match.match_hometeam_name}
-                          alt="sem logo"
-                        />
-                      )}
+                      PTS
                     </TableCell>
-                    <TableCell
-                      component="th"
-                      scope="row"
-                      sx={TableStyle.bodyCell}
-                    >
-                      {match.match_hometeam_score != ""
-                        ? match.match_hometeam_score
-                        : "-"}
+                    <TableCell sx={TableStyle.headerCell} title="Visitante">
+                      Visitante
                     </TableCell>
-                    <TableCell
-                      component="th"
-                      scope="row"
-                      sx={TableStyle.bodyCell}
-                    >
-                      {match.match_time != "" ? match.match_time : "-"}
+                    <TableCell sx={TableStyle.headerCell} title="Juiz">
+                      Juiz
                     </TableCell>
-                    <TableCell
-                      component="th"
-                      scope="row"
-                      sx={TableStyle.bodyCell}
-                    >
-                      {match.match_awayteam_score != ""
-                        ? match.match_awayteam_score
-                        : "-"}
-                    </TableCell>
-                    <TableCell
-                      component="th"
-                      scope="row"
-                      sx={TableStyle.bodyCell}
-                    >
-                      {match.team_away_badge && (
-                        <img
-                          style={{ maxWidth: "3em" }}
-                          src={match.team_away_badge}
-                          title={match.match_awayteam_name}
-                          alt="visitante"
-                        ></img>
-                      )}
-                    </TableCell>
-                    <TableCell
-                      component="th"
-                      scope="row"
-                      sx={TableStyle.bodyCell}
-                    >
-                      {match.match_referee != "" ? match.match_referee : "-"}
-                    </TableCell>
-                    <TableCell
-                      component="th"
-                      scope="row"
-                      sx={TableStyle.bodyCell}
-                    >
-                      {match.match_stadium != "" ? match.match_stadium : "-"}
+                    <TableCell sx={TableStyle.headerCell} title="Estádio">
+                      Estádio
                     </TableCell>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Card>
-      ) : (
-        // Skeleton while the request is being made
-        (error != null && console.log(error),
-        isLoading && (
-          <Skeleton variant="rounded" width={"70vw"} height={"60vh"} />
-        ))
-      )}
+                </TableHead>
+                <TableBody>
+                  {matches.map((match: IMatches) => (
+                    <TableRow
+                      key={match.match_id}
+                      sx={{
+                        "&:last-child td, &:last-child th": { border: 0 },
+                      }}
+                    >
+                      <TableCell
+                        component="th"
+                        scope="row"
+                        sx={TableStyle.bodyCell}
+                      >
+                        {match.match_date != "" ? match.match_date : "-"}
+                      </TableCell>
+                      <TableCell
+                        component="th"
+                        scope="row"
+                        sx={TableStyle.bodyCell}
+                      >
+                        {match.team_home_badge != "" || null ? (
+                          <img
+                            style={{ maxWidth: "3em" }}
+                            src={match.team_home_badge}
+                            alt="mandante"
+                          />
+                        ) : (
+                          <img
+                            style={{ maxWidth: "3em" }}
+                            src={assets.images.logo}
+                            title={match.match_hometeam_name}
+                            alt="sem logo"
+                          />
+                        )}
+                      </TableCell>
+                      <TableCell
+                        component="th"
+                        scope="row"
+                        sx={TableStyle.bodyCell}
+                      >
+                        {match.match_hometeam_score != ""
+                          ? match.match_hometeam_score
+                          : "-"}
+                      </TableCell>
+                      <TableCell
+                        component="th"
+                        scope="row"
+                        sx={TableStyle.bodyCell}
+                      >
+                        {match.match_time != "" ? match.match_time : "-"}
+                      </TableCell>
+                      <TableCell
+                        component="th"
+                        scope="row"
+                        sx={TableStyle.bodyCell}
+                      >
+                        {match.match_awayteam_score != ""
+                          ? match.match_awayteam_score
+                          : "-"}
+                      </TableCell>
+                      <TableCell
+                        component="th"
+                        scope="row"
+                        sx={TableStyle.bodyCell}
+                      >
+                        {match.team_away_badge && (
+                          <img
+                            style={{ maxWidth: "3em" }}
+                            src={match.team_away_badge}
+                            title={match.match_awayteam_name}
+                            alt="visitante"
+                          ></img>
+                        )}
+                      </TableCell>
+                      <TableCell
+                        component="th"
+                        scope="row"
+                        sx={TableStyle.bodyCell}
+                      >
+                        {match.match_referee != "" ? match.match_referee : "-"}
+                      </TableCell>
+                      <TableCell
+                        component="th"
+                        scope="row"
+                        sx={TableStyle.bodyCell}
+                      >
+                        {match.match_stadium != "" ? match.match_stadium : "-"}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Card>
+        ) : (
+          // Skeleton while the request is being made
+          (error != null && console.log(error),
+          isLoading && (
+            <Skeleton variant="rounded" width={"70vw"} height={"60vh"} />
+          ))
+        )}
+      </ErrorBoundary>
     </Container>
   );
 };

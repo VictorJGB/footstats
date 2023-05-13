@@ -30,8 +30,8 @@ const Theme = {
     primary: themeColors.main.primary,
     dark: themeColors.bg,
     light: themeColors.main.secondary,
-    white: themeColors.main.primary,
-    black: themeColors.main.primary,
+    white: themeColors.main.white,
+    black: themeColors.main.black,
     hoverBg: themeColors.hoverBg,
   },
 };

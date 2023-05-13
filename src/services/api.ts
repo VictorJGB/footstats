@@ -8,6 +8,9 @@ const api = axios.create({
 const apiKey =
   "4982a75d8a59feb1df3929d79e015fe3e6055b41029252b5706b5fcdc8f6bf00";
 
+const newApiKey =
+  "2846f9c860ddf04191db568ead7ba15f34a885be021049a636e9ce18ecebac75";
+
 export function useStandings<T = unknown>() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [data, setData] = useState<T | null>(null);
@@ -78,10 +81,14 @@ export function useMatchesRequest<T = unknown>(
     const config: AxiosRequestConfig = {
       params: {
         action: "get_events",
-        APIkey: apiKey,
+        APIkey: newApiKey,
         league_id: leagueId,
         from: fromDate,
         to: toDate,
+      },
+      headers: {
+        "Allow-Control-Origin": "*",
+        "Access-Control-Allow-Origin": "*",
       },
     };
 

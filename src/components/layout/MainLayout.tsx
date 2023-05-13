@@ -12,7 +12,7 @@ const MainLayout = () => {
           width: "300px",
           flexShrink: 0,
           backgroundColor: Theme.sidebar.bg,
-          color: Theme.sidebar.color,
+          color: Theme.sidebar.textColor,
         }}
       >
         <Sidebar />
@@ -25,7 +25,7 @@ const MainLayout = () => {
           p: 3,
           width: `calc(100% - 300px)`,
           minHeight: "100vh",
-          backgroundColor: Theme.mainBg,
+          backgroundColor: Theme.background.white,
         }}
       >
         <Outlet />
