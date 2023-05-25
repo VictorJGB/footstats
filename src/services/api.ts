@@ -6,9 +6,6 @@ const api = axios.create({
 });
 
 const apiKey =
-  "4982a75d8a59feb1df3929d79e015fe3e6055b41029252b5706b5fcdc8f6bf00";
-
-const newApiKey =
   "2846f9c860ddf04191db568ead7ba15f34a885be021049a636e9ce18ecebac75";
 
 export function useStandings<T = unknown>() {
@@ -73,22 +70,18 @@ export function useMatchesRequest<T = unknown>(
   toDate: string
 ) {
   const [data, setData] = useState<T | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean | null>(true);
-  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<number | null>(null);
 
   //   base configurations for the request
   useEffect(() => {
     const config: AxiosRequestConfig = {
       params: {
         action: "get_events",
-        APIkey: newApiKey,
+        APIkey: apiKey,
         league_id: leagueId,
         from: fromDate,
         to: toDate,
-      },
-      headers: {
-        "Allow-Control-Origin": "*",
-        "Access-Control-Allow-Origin": "*",
       },
     };
 
@@ -96,6 +89,9 @@ export function useMatchesRequest<T = unknown>(
       .get("", config)
       .then((res) => {
         setData(res.data);
+        if (res.data.error) {
+          setError(res.data.error);
+        }
       })
       .catch((err) => {
         if (err.response) {
