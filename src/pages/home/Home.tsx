@@ -8,8 +8,6 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import PersonIcon from "@mui/icons-material/Person";
 import DateRangeIcon from "@mui/icons-material/DateRange";
 
-import Theme from "../../styles/Theme";
-
 import { homeBtnStyle } from "./config/stylesConfig";
 
 import Card from "../../components/Card/Card";
@@ -20,17 +18,24 @@ const HomePage = () => {
     <Container>
       {/* Title box */}
       <TitleContainer>
-        <Title fontSize="3rem" color={Theme.title.black}>
+        <Title sx={{ fontSize: "3rem", fontWeight: 500 }}>
           Bem vindo ao <Bold>Footstats</Bold>
         </Title>
-        <Subtitle color={Theme.title.black}>
-          Seu site de estatísticas esportivas
-        </Subtitle>
+        <Subtitle>Seu site de estatísticas esportivas</Subtitle>
       </TitleContainer>
 
       {/* Buttons box */}
-      <Card width={"70%"} height={"40%"} bgColor={Theme.background.dark}>
-        <Subtitle fontSize="2.5rem" color={Theme.title.white}>
+      <Card
+        sx={{
+          width: "90%",
+          height: "40%",
+        }}
+      >
+        <Subtitle
+          sx={{
+            fontSize: "2.5rem",
+          }}
+        >
           Escolha uma ação
         </Subtitle>
         <Box

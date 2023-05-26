@@ -1,14 +1,20 @@
 import { ReactNode } from "react";
+
 import { StyledH2 } from "./Subtitle.styles";
+
+import { TypographyProps } from "@mui/material/Typography";
 
 type Props = {
   children?: ReactNode;
-  fontSize?: string;
-  color?: string;
+  sx?: TypographyProps;
 };
 
 const Subtitle = (props: Props) => {
-  return <StyledH2 {...props}>{props.children}</StyledH2>;
+  return (
+    <StyledH2 variant="h2" {...props}>
+      {props.children}
+    </StyledH2>
+  );
 };
 
 export default Subtitle;

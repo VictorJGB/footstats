@@ -6,7 +6,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10%;
+  gap: 6%;
 `;
 
 export const TitleContainer = styled.div`

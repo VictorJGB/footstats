@@ -14,6 +14,10 @@ const SideBarItem = ({ item }: Props) => {
       to={item.path}
       sx={{
         color: Theme.sidebar.textColor,
+        fontSize: {
+          md: "1rem",
+          lg: "1.2rem",
+        },
 
         "&: hover": {
           backgroundColor: Theme.sidebar.hoverBg,
@@ -21,7 +25,14 @@ const SideBarItem = ({ item }: Props) => {
         padding: "5% 10%",
       }}
     >
-      <ListItemIcon sx={{ color: Theme.sidebar.iconColor }}>
+      <ListItemIcon
+        sx={{
+          color: Theme.sidebar.iconColor,
+          fontSize: {
+            md: "3rem",
+          },
+        }}
+      >
         {item.sidebarProps.icon && item.sidebarProps.icon}
       </ListItemIcon>
       {item.sidebarProps.displayText}

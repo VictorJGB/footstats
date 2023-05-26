@@ -1,11 +1,10 @@
 import { ReactNode } from "react";
 import { CardWrapper } from "./Card.styles";
+import { SxProps } from "@mui/material/styles";
 
 type Props = {
   children?: ReactNode;
-  width?: string;
-  height?: string;
-  bgColor?: string;
+  sx?: SxProps;
 };
 
 const Card = (props: Props) => {

@@ -1,17 +1,16 @@
 import styled from "styled-components";
+import Theme from "../../styles/Theme";
 
-export const CardWrapper = styled.div<{
-  width?: string;
-  height?: string;
-  bgColor?: string;
-}>`
+import Box from "@mui/material/Box";
+
+export const CardWrapper = styled(Box)`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  width: ${(props) => props.width ?? "50vmin"};
-  height: ${(props) => props.height ?? "25vmax"};
-  background-color: ${(props) => props.bgColor ?? props.theme.secondaryBg};
+  width: "80%";
+  height: "40%";
+  background-color: ${Theme.background.dark};
 
-  border-radius: 16px;
+  border-radius: 1.6rem;
 `;

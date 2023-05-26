@@ -9,7 +9,7 @@ const MainLayout = () => {
       <Box
         component="nav"
         sx={{
-          width: "300px",
+          flex: "1 1 20%",
           flexShrink: 0,
           backgroundColor: Theme.sidebar.bg,
           color: Theme.sidebar.textColor,
@@ -21,9 +21,8 @@ const MainLayout = () => {
       <Box
         component="main"
         sx={{
-          flexGrow: 1,
+          flex: "1 1 80%",
           p: 3,
-          width: `calc(100% - 300px)`,
           minHeight: "100vh",
           backgroundColor: Theme.background.white,
         }}

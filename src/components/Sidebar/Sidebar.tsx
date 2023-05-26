@@ -2,8 +2,11 @@ import { Avatar, Drawer, List, Stack, Toolbar } from "@mui/material";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 
 import Theme from "../../styles/Theme";
-import appRoutes from "../../routes/appRoutes";
 import SideBarItem from "./Item/Item";
+
+import Title from "../Title/Title";
+
+import appRoutes from "../../routes/appRoutes";
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {
@@ -11,10 +14,15 @@ const Sidebar = () => {
     <Drawer
       variant="permanent"
       sx={{
-        width: "300px",
+        width: {
+          sm: "5%",
+          md: "20%",
+        },
         flexShrink: 0,
         "& .MuiDrawer-paper": {
-          width: "300px",
+          width: {
+            md: "20%",
+          },
           boxSizing: "border-box",
           borderRight: "0px",
           backgroundColor: Theme.sidebar.bg,
@@ -30,10 +38,11 @@ const Sidebar = () => {
               width: "100%",
               direction: "row",
               flexDirection: "row",
-              padding: "3%",
               justifyContent: "center",
               alignItems: "center",
+              padding: "3%",
               marginBottom: "10%",
+              gap: "4%",
               color: Theme.sidebar.textColor,
             }}
           >
@@ -43,10 +52,26 @@ const Sidebar = () => {
               }}
             >
               <SportsSoccerIcon
-                sx={{ fontSize: "5vmin", color: Theme.title.primary }}
+                sx={{
+                  fontSize: {
+                    md: "3rem",
+                  },
+                  color: Theme.title.primary,
+                }}
               />
             </Avatar>
-            <h1>Footstats</h1>
+            <Title
+              sx={{
+                color: Theme.title.white,
+                fontSize: {
+                  md: "1.3rem",
+                  lg: "1.4rem",
+                },
+                fontWeight: "700",
+              }}
+            >
+              Footstats
+            </Title>
           </Stack>
         </Toolbar>
         {appRoutes.map((route, index) =>

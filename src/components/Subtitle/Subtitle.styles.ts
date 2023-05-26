@@ -1,8 +1,10 @@
+import Typography from "@mui/material/Typography";
 import styled from "styled-components";
+import Theme from "../../styles/Theme";
 
-export const StyledH2 = styled.h2<{ fontSize?: string; color?: string }>`
-  font-size: ${(props) => props.fontSize ?? "1.8rem"};
+export const StyledH2 = styled(Typography)`
+  font-size: "1.8rem";
   font-weight: 500;
 
-  color: ${(props) => props.color ?? props.theme.title.white};
+  color: ${Theme.title.white};
 `;
