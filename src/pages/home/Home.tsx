@@ -4,25 +4,15 @@ import Title from "../../components/Title/Title";
 import Subtitle from "../../components/Subtitle/Subtitle";
 
 import { Box, Button } from "@mui/material";
-
-import Theme from "../../styles/Theme";
-
 import GroupsIcon from "@mui/icons-material/Groups";
 import PersonIcon from "@mui/icons-material/Person";
 import DateRangeIcon from "@mui/icons-material/DateRange";
+
+import Theme from "../../styles/Theme";
+
+import { homeBtnStyle } from "./config/stylesConfig";
+
 import Card from "../../components/Card/Card";
-
-const btnStyle = {
-  padding: "3% 5%",
-  margin: "2%",
-  backgroundColor: Theme.background.primary,
-  color: Theme.title.white,
-  transition: "0.5s ease",
-
-  "&: hover": {
-    backgroundColor: Theme.background.hoverBg,
-  },
-};
 
 const HomePage = () => {
   return (
@@ -30,7 +20,7 @@ const HomePage = () => {
     <Container>
       {/* Title box */}
       <TitleContainer>
-        <Title fontSize={"5vmin"} color={Theme.title.black}>
+        <Title fontSize="3rem" color={Theme.title.black}>
           Bem vindo ao <Bold>Footstats</Bold>
         </Title>
         <Subtitle color={Theme.title.black}>
@@ -39,8 +29,8 @@ const HomePage = () => {
       </TitleContainer>
 
       {/* Buttons box */}
-      <Card width={"70vmin"} height={"25vmax"} bgColor={Theme.background.dark}>
-        <Subtitle fontSize={"2.5em"} color={Theme.title.white}>
+      <Card width={"70%"} height={"40%"} bgColor={Theme.background.dark}>
+        <Subtitle fontSize="2.5rem" color={Theme.title.white}>
           Escolha uma ação
         </Subtitle>
         <Box
@@ -51,13 +41,17 @@ const HomePage = () => {
             justifyContent: "center",
           }}
         >
-          <Button sx={btnStyle} href="/teams" startIcon={<GroupsIcon />}>
+          <Button sx={homeBtnStyle} href="/teams" startIcon={<GroupsIcon />}>
             Times
           </Button>
-          <Button sx={btnStyle} href="/players" startIcon={<PersonIcon />}>
+          <Button sx={homeBtnStyle} href="/players" startIcon={<PersonIcon />}>
             Jogadores
           </Button>
-          <Button sx={btnStyle} href="/matches" startIcon={<DateRangeIcon />}>
+          <Button
+            sx={homeBtnStyle}
+            href="/matches"
+            startIcon={<DateRangeIcon />}
+          >
             Partidas
           </Button>
         </Box>

@@ -1,12 +1,7 @@
-import axios, { AxiosRequestConfig } from "axios";
+import { AxiosRequestConfig } from "axios";
 import { useEffect, useState } from "react";
 
-const api = axios.create({
-  baseURL: "https://apiv3.apifootball.com/",
-});
-
-const apiKey =
-  "2846f9c860ddf04191db568ead7ba15f34a885be021049a636e9ce18ecebac75";
+import { apiKey, apiBaseConfig } from "../utils/apiEnv";
 
 export function useStandings<T = unknown>() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -23,7 +18,7 @@ export function useStandings<T = unknown>() {
       },
     };
 
-    api
+    apiBaseConfig
       .get("", config)
       .then((res) => {
         setData(res.data);
@@ -51,7 +46,7 @@ export function useTeams<T = unknown>(teamId?: number) {
       },
     };
 
-    api
+    apiBaseConfig
       .get("", config)
       .then((res) => {
         setData(res.data);
@@ -62,45 +57,4 @@ export function useTeams<T = unknown>(teamId?: number) {
   }, [teamId]);
 
   return { data, isLoading };
-}
-
-export function useMatchesRequest<T = unknown>(
-  leagueId: number,
-  fromDate: string,
-  toDate: string
-) {
-  const [data, setData] = useState<T | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [error, setError] = useState<number | null>(null);
-
-  //   base configurations for the request
-  useEffect(() => {
-    const config: AxiosRequestConfig = {
-      params: {
-        action: "get_events",
-        APIkey: apiKey,
-        league_id: leagueId,
-        from: fromDate,
-        to: toDate,
-      },
-    };
-
-    api
-      .get("", config)
-      .then((res) => {
-        setData(res.data);
-        if (res.data.error) {
-          setError(res.data.error);
-        }
-      })
-      .catch((err) => {
-        if (err.response) {
-          console.error(err.response.data);
-          setError(err.response.status);
-        }
-      })
-      .finally(() => setIsLoading(false));
-  }, [fromDate, leagueId, toDate]);
-
-  return { data, isLoading, error };
 }

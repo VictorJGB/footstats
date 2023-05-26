@@ -6,6 +6,10 @@ const GlobalStyles = createGlobalStyle`
     width: 100%; 
     }
 
+    body{
+      font-size: 62.5%;
+    }
+
 
   * {
     font-family: 'Roboto', sans-serif;

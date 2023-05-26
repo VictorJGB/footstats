@@ -23,7 +23,7 @@ import { IMatches } from "../../interface/IMatches";
 import Card from "../../components/Card/Card";
 import dayjs, { Dayjs } from "dayjs";
 
-import { useMatchesRequest } from "../../services/api";
+import { useMatches } from "../../hooks/useMatches";
 import Subtitle from "../../components/Subtitle/Subtitle";
 import Title from "../../components/Title/Title";
 import TableStyle from "../../styles/TableStyle";
@@ -41,7 +41,7 @@ const MatchesPage = () => {
     data: matches,
     error,
     isLoading,
-  } = useMatchesRequest<IMatches[]>(
+  } = useMatches<IMatches[]>(
     302,
     formatFromDate ?? "2022-10-01",
     formatToDate ?? "2023-02-11"
@@ -63,7 +63,7 @@ const MatchesPage = () => {
   function searchMatches() {
     setFormatFromDate(fromDate != null ? fromDate?.format("YYYY-MM-DD") : "");
     setFormatToDate(toDate != undefined ? toDate?.format("YYYY-MM-DD") : "");
-    console.log(matches);
+    console.log(matches, isLoading);
   }
 
   return (
@@ -144,7 +144,9 @@ const MatchesPage = () => {
       </Box>
 
       {/* Main Content */}
-      {matches != null && isLoading === false && error === null ? (
+      {isLoading ? (
+        <Skeleton variant="rounded" width={"70vw"} height={"60vh"} />
+      ) : (
         <Card width="70vw" height="65vh">
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: "100%" }} aria-label="simple table">
@@ -177,104 +179,105 @@ const MatchesPage = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {matches.map((match: IMatches) => (
-                  <TableRow
-                    key={match.match_id}
-                    sx={{
-                      "&:last-child td, &:last-child th": { border: 0 },
-                    }}
-                  >
-                    <TableCell
-                      component="th"
-                      scope="row"
-                      sx={TableStyle.bodyCell}
-                    >
-                      {match.match_date != "" ? match.match_date : "-"}
-                    </TableCell>
-                    <TableCell
-                      component="th"
-                      scope="row"
-                      sx={TableStyle.bodyCell}
-                    >
-                      {match.team_home_badge != "" || null ? (
-                        <img
-                          style={{ maxWidth: "3em" }}
-                          src={match.team_home_badge}
-                          alt="mandante"
-                        />
-                      ) : (
-                        <img
-                          style={{ maxWidth: "3em" }}
-                          src={assets.images.logo}
-                          title={match.match_hometeam_name}
-                          alt="sem logo"
-                        />
-                      )}
-                    </TableCell>
-                    <TableCell
-                      component="th"
-                      scope="row"
-                      sx={TableStyle.bodyCell}
-                    >
-                      {match.match_hometeam_score != ""
-                        ? match.match_hometeam_score
-                        : "-"}
-                    </TableCell>
-                    <TableCell
-                      component="th"
-                      scope="row"
-                      sx={TableStyle.bodyCell}
-                    >
-                      {match.match_time != "" ? match.match_time : "-"}
-                    </TableCell>
-                    <TableCell
-                      component="th"
-                      scope="row"
-                      sx={TableStyle.bodyCell}
-                    >
-                      {match.match_awayteam_score != ""
-                        ? match.match_awayteam_score
-                        : "-"}
-                    </TableCell>
-                    <TableCell
-                      component="th"
-                      scope="row"
-                      sx={TableStyle.bodyCell}
-                    >
-                      {match.team_away_badge && (
-                        <img
-                          style={{ maxWidth: "3em" }}
-                          src={match.team_away_badge}
-                          title={match.match_awayteam_name}
-                          alt="visitante"
-                        ></img>
-                      )}
-                    </TableCell>
-                    <TableCell
-                      component="th"
-                      scope="row"
-                      sx={TableStyle.bodyCell}
-                    >
-                      {match.match_referee != "" ? match.match_referee : "-"}
-                    </TableCell>
-                    <TableCell
-                      component="th"
-                      scope="row"
-                      sx={TableStyle.bodyCell}
-                    >
-                      {match.match_stadium != "" ? match.match_stadium : "-"}
-                    </TableCell>
-                  </TableRow>
-                ))}
+                {matches != null && !matches.error
+                  ? matches.map((match: IMatches) => (
+                      <TableRow
+                        key={match.match_id}
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                        }}
+                      >
+                        <TableCell
+                          component="th"
+                          scope="row"
+                          sx={TableStyle.bodyCell}
+                        >
+                          {match.match_date != "" ? match.match_date : "-"}
+                        </TableCell>
+                        <TableCell
+                          component="th"
+                          scope="row"
+                          sx={TableStyle.bodyCell}
+                        >
+                          {match.team_home_badge != "" || null ? (
+                            <img
+                              style={{ maxWidth: "3em" }}
+                              src={match.team_home_badge}
+                              alt="mandante"
+                            />
+                          ) : (
+                            <img
+                              style={{ maxWidth: "3em" }}
+                              src={assets.images.logo}
+                              title={match.match_hometeam_name}
+                              alt="sem logo"
+                            />
+                          )}
+                        </TableCell>
+                        <TableCell
+                          component="th"
+                          scope="row"
+                          sx={TableStyle.bodyCell}
+                        >
+                          {match.match_hometeam_score != ""
+                            ? match.match_hometeam_score
+                            : "-"}
+                        </TableCell>
+                        <TableCell
+                          component="th"
+                          scope="row"
+                          sx={TableStyle.bodyCell}
+                        >
+                          {match.match_time != "" ? match.match_time : "-"}
+                        </TableCell>
+                        <TableCell
+                          component="th"
+                          scope="row"
+                          sx={TableStyle.bodyCell}
+                        >
+                          {match.match_awayteam_score != ""
+                            ? match.match_awayteam_score
+                            : "-"}
+                        </TableCell>
+                        <TableCell
+                          component="th"
+                          scope="row"
+                          sx={TableStyle.bodyCell}
+                        >
+                          {match.team_away_badge && (
+                            <img
+                              style={{ maxWidth: "3em" }}
+                              src={match.team_away_badge}
+                              title={match.match_awayteam_name}
+                              alt="visitante"
+                            ></img>
+                          )}
+                        </TableCell>
+                        <TableCell
+                          component="th"
+                          scope="row"
+                          sx={TableStyle.bodyCell}
+                        >
+                          {match.match_referee != ""
+                            ? match.match_referee
+                            : "-"}
+                        </TableCell>
+                        <TableCell
+                          component="th"
+                          scope="row"
+                          sx={TableStyle.bodyCell}
+                        >
+                          {match.match_stadium != ""
+                            ? match.match_stadium
+                            : "-"}
+                        </TableCell>
+                      </TableRow>
+                    ))
+                  : null}
               </TableBody>
             </Table>
           </TableContainer>
         </Card>
-      ) : (
-        // Skeleton while the request is being made
-        isLoading && (
-          <Skeleton variant="rounded" width={"70vw"} height={"60vh"} />
-        )
       )}
     </Container>
   );

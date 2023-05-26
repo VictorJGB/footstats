@@ -10,9 +10,9 @@ export const Container = styled.div`
 `;
 
 export const TitleContainer = styled.div`
-  align-self: flex-start;
+  align-self: center;
   width: 100%;
-  text-align: start;
+  text-align: center;
 `;
 
 export const Bold = styled.strong`
